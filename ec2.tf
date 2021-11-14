@@ -17,7 +17,7 @@
 
 # worker vm
 resource "aws_instance" "week11-worker-vm" {
-  ami                  = "ami-02e136e904f3da870"
+  ami                  = "ami-0168b9285893a7395"
   instance_type        = "t2.micro"
   subnet_id            = aws_subnet.week11-pri-a.id
   iam_instance_profile = aws_iam_instance_profile.week11-profile-ref.name
@@ -27,6 +27,8 @@ resource "aws_instance" "week11-worker-vm" {
   ]
 
   key_name = "ECE592"
+
+  user_data = file("cloudinit.txt")
 
   tags = {
     Name = "week11-worker-vm"
